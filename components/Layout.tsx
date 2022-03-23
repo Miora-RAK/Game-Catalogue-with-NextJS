@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../styles/Home.module.css";
 import {
   Navbar,
   Container,
@@ -8,7 +9,6 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
-import styles from "../styles/Home.module.css";
 
 const Layout: React.FC = ({ children }) => {
   return (
@@ -26,14 +26,14 @@ const Layout: React.FC = ({ children }) => {
               >
                 <Nav.Link href="#action1">Logo</Nav.Link>
                 <Nav.Link href="#action2">Connexion</Nav.Link>
-                <NavDropdown title="Link" id="navbarScrollingDropdown">
-                  <NavDropdown.Item href="#action3">Platforms</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">Platform1</NavDropdown.Item>
+                <NavDropdown title="Platforms" id="navbarScrollingDropdown">
+                  <NavDropdown.Item href="#action3">Platform1</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">Platform2</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">Platform2</NavDropdown.Item>
+                  <NavDropdown.Item href="#action5">Platform3</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href="#" disabled>
-                  Link
+                  Mon compte
                 </Nav.Link>
               </Nav>
               <Form className="d-flex">
