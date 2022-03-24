@@ -34,13 +34,7 @@ const Games: React.FC<GamesProps> = ({ games }) => {
           <div className="row" style={{ paddingLeft: "1.5rem" }}>
             {games.map((game: any, index: any) => {
               return (
-                <Link
-                  href={{
-                    pathname: "/games/[game.slug]",
-                    query: { slug: game.slug },
-                  }}
-                  key={index}
-                >
+                <Link href={`/games/${[game.slug]}`} key={index}>
                   <a className={styles.card}>
                     <Card style={{ width: "12rem" }} key={index}>
                       <Card.Img
@@ -56,12 +50,6 @@ const Games: React.FC<GamesProps> = ({ games }) => {
                     </Card.Text>
                   </a>
                 </Link>
-                //   <Link
-                //   href={{
-                //     pathname: '/blog/[slug]',
-                //     query: { slug: post.slug },
-                //   }}
-                // >
               );
             })}
           </div>
