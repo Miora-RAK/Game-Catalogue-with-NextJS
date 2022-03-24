@@ -3,6 +3,7 @@ import styles from "../../../styles/Home.module.css";
 import { GetServerSideProps } from "next";
 import { getDatabase } from "../../../src/utils/database";
 import Layout from "../../../components/Layout";
+import { Card, Button } from "react-bootstrap";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const data = await getDatabase();
@@ -33,9 +34,41 @@ const GameDetails: React.FC<GameDetailsProps> = ({ games }) => {
             {games.map((game: any, index: any) => {
               return (
                 <>
-                  <h2 key={index} className={styles.card}>
-                    {game.summary} &rarr;
-                  </h2>
+                  <a className={styles.card}>
+                    <Card
+                      className="text-center"
+                      style={{ width: "12rem" }}
+                      key={`${index}-12`}
+                    >
+                      <Card.Img
+                        style={{ width: "12rem", height: "12rem" }}
+                        src={game.cover.url}
+                        key={`${index}-Img`}
+                      />
+                    </Card>
+                    <Card.Title className="text-center" key={index}>
+                      {game.name} &rarr;
+                    </Card.Title>
+                    <Card.Text
+                      className=" text-center text-secondary"
+                      key={`${index}-text`}
+                    >
+                      {game.price} €
+                    </Card.Text>
+                    <Button
+                      variant="secondary "
+                      className=" text-center "
+                      key={`${index}-button`}
+                    >
+                      Add to cart
+                    </Button>
+                    <Card.Text
+                      className="text-center "
+                      key={`${index}-summary`}
+                    >
+                      {game.summary}
+                    </Card.Text>
+                  </a>
                 </>
               );
             })}

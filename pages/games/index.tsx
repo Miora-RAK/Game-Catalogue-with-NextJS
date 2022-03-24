@@ -31,10 +31,16 @@ const Games: React.FC<GamesProps> = ({ games }) => {
       <Layout>
         <main className={styles.main}>
           <h1 className={styles.title}>ALL GAMES</h1>
-          <div className={styles.grid}>
+          <div className="row" style={{ paddingLeft: "1.5rem" }}>
             {games.map((game: any, index: any) => {
               return (
-                <Link href={`/games/${game.slug}`} key={index}>
+                <Link
+                  href={{
+                    pathname: "/games/[game.slug]",
+                    query: { slug: game.slug },
+                  }}
+                  key={index}
+                >
                   <a className={styles.card}>
                     <Card style={{ width: "12rem" }} key={index}>
                       <Card.Img
@@ -50,13 +56,14 @@ const Games: React.FC<GamesProps> = ({ games }) => {
                     </Card.Text>
                   </a>
                 </Link>
+                //   <Link
+                //   href={{
+                //     pathname: '/blog/[slug]',
+                //     query: { slug: post.slug },
+                //   }}
+                // >
               );
             })}
-            {/* {games.map((game: any, index: any) => {
-            !game.cover ? "no cover" : <Image src={`/${game.cover.url}`} alt="cover"
-                width={72}
-                height={16}/>;
-          })} */}
           </div>
         </main>
       </Layout>

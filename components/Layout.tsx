@@ -9,8 +9,13 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
+import { useUser } from "@auth0/nextjs-auth0";
 
 const Layout: React.FC = ({ children }) => {
+  const { user, error, isLoading } = useUser();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
   return (
     <>
       <header>
@@ -40,11 +45,22 @@ const Layout: React.FC = ({ children }) => {
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action5">Platform3</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="#action2">Panier</Nav.Link>
-                <Nav.Link href="#action2">Connexion</Nav.Link>
-                <Nav.Link href="#" disabled>
-                  Mon compte
-                </Nav.Link>
+                <Nav.Link href="/cart">Panier</Nav.Link>
+                {!isLoading &&
+                  (user ? (
+                    <>
+                      <Nav.Link href="/account">Mon compte</Nav.Link>
+                      <Nav.Link href="/private">Promotions</Nav.Link>
+                      <Nav.Link href="/api/auth/logout">Déconnexion</Nav.Link>
+                    </>
+                  ) : (
+                    <>
+                      <Nav.Link href="/api/auth/login">Connexion</Nav.Link>
+                      <Nav.Link href="/account" disabled>
+                        Mon compte
+                      </Nav.Link>
+                    </>
+                  ))}
               </Nav>
             </Navbar.Collapse>
           </Container>
