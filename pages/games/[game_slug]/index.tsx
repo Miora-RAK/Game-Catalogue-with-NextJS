@@ -17,9 +17,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const slug = await context.params?.game_slug;
   const gameDetails = gamesParse.filter((game: any) => slug === game.slug);
 
-  console.log(slug);
-  console.log(gameDetails);
-
   return {
     props: {
       games: gamesParse,

@@ -45,7 +45,7 @@ const Layout: React.FC = ({ children }) => {
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action5">Platform3</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="/cart">Panier</Nav.Link>
+                <Nav.Link href="/cartList">Panier</Nav.Link>
                 {!isLoading &&
                   (user ? (
                     <>
