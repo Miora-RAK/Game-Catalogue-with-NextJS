@@ -8,8 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@auth0/nextjs-auth0";
 
 const CartList: React.FC = () => {
-  const cart: string[] = [];
-  const [addCart, setAddCart] = React.useState<string[]>(cart);
+  const panier: string[] = [];
+  const [addCart, setAddCart] = React.useState<string[]>(panier);
   const reset = (createdAt: string): void => {
     return setAddCart(addCart.filter((element) => element !== createdAt));
   };
