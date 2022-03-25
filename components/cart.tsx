@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
 import { useUser } from "@auth0/nextjs-auth0";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 type CartProps = {
   cartId: string;
@@ -31,7 +31,9 @@ const Cart: React.FC<CartProps> = ({ cartId, removeCart }) => {
   return (
     <>
       <tr>
-        <td className="text-center">Image</td>
+        <td className="text-center">
+          <Card.Img src="/favicon.ico" style={{ width: "8rem" }}></Card.Img>
+        </td>
         <td className="text-center">Product name</td>
         <td className="text-center">Prix</td>
         <td className="text-center">{quantity}</td>

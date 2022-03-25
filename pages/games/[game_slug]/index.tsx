@@ -69,13 +69,33 @@ const GameDetails: React.FC<GameDetailsProps> = ({
                   >
                     Add to cart
                   </Button>
-                  <Offcanvas show={show} onHide={handleClose} {...props}>
+                  <Offcanvas
+                    show={show}
+                    onHide={handleClose}
+                    {...props}
+                    className="text-center"
+                  >
                     <Offcanvas.Header closeButton>
-                      <Offcanvas.Title>Cart</Offcanvas.Title>
+                      <Offcanvas.Title className="text-center">
+                        {" "}
+                        Add to cart
+                      </Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                      {gameDetails.name} is added! <br /> Price:{" "}
-                      {gameDetails.price} €
+                      <p>{gameDetails.name} is added! </p>
+                      <p>
+                        {" "}
+                        Price:
+                        {gameDetails.price} €
+                      </p>
+
+                      <Button
+                        variant="secondary"
+                        className="me-2"
+                        href="/cartList"
+                      >
+                        Show my cart
+                      </Button>
                     </Offcanvas.Body>
                   </Offcanvas>
                 </>

@@ -113,7 +113,48 @@
   width: 100%;
   height: 250px;
 }
+.user {
+  width: 2rem;
+  border-radius: 50%;
+}
+.profilePhoto {
+  width: 8rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
 
+.parallax {
+  background-image: url("/parallax.jpeg");
+  background-attachment: fixed;
+  background-position: center;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parallaxText {
+  font-size: 50px;
+  color: #f1f1f1;
+  text-align: center;
+  font-weight: 500;
+}
+.icone {
+  font-size: 25px;
+  color: gray;
+}
+.subtitles {
+  margin: 2rem 0;
+  font-size: 1.5rem;
+  padding-left: 2rem;
+}
+.numberCart {
+  background-color: red;
+  border-radius: 50%;
+  color: black;
+  text-align: center;
+  font-size: 15px;
+}
 @media (max-width: 600px) {
   .grid {
     width: 100%;

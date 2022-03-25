@@ -7,6 +7,7 @@ import { getDatabase } from "../src/utils/database";
 import { Card } from "react-bootstrap";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
+import { useUser } from "@auth0/nextjs-auth0";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const data = await getDatabase();
@@ -44,6 +45,10 @@ const Home: React.FC<GamesProps> = ({
   bestSellers,
   id,
 }) => {
+  const { user, error, isLoading } = useUser();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
   return (
     <div className={styles.container} key={id}>
       <Head>
@@ -52,10 +57,17 @@ const Home: React.FC<GamesProps> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <main className={styles.main}>
-          <h1 className={styles.title}>Welcome to Next Game Catalogue!</h1>
-          <div className={styles.background}></div>
-          <div> Jeux du moments</div>
+        <section className={styles.parallax}>
+          <p className={styles.parallaxText}>
+            WELCOME TO NEXT GAME CATALOGUE{" "}
+            {!isLoading && user && <span>{user.nickname} </span>}
+          </p>
+        </section>
+        <main className={styles.s}>
+          {/* <h1 className={styles.title}>Welcome to Next Game Catalogue!</h1> */}
+          {/* <div className={styles.background}></div> */}
+
+          <div className={styles.subtitles}> Jeux du moments</div>
           <div className="row">
             {gamesOfTheMoment.map((game: any) => {
               return (
@@ -80,7 +92,7 @@ const Home: React.FC<GamesProps> = ({
               );
             })}
           </div>
-          <div> Meilleures ventes </div>
+          <div className={styles.subtitles}> Meilleures ventes </div>
           <div className="row">
             {bestSellers.map((game: any) => {
               return (

@@ -1,6 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import Layout from "../../components/Layout";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { GetServerSideProps } from "next";
 
 const Private = () => {
   return (

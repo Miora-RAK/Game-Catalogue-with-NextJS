@@ -1,10 +1,11 @@
 import styles from "../../styles/Home.module.css";
 import Layout from "../../components/Layout";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import Cart from "../../components/cart";
+import Cart from "../../components/Cart";
 import { Table } from "react-bootstrap";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useUser } from "@auth0/nextjs-auth0";
 
 const CartList: React.FC = () => {
   const cart: string[] = [];
@@ -13,11 +14,15 @@ const CartList: React.FC = () => {
     return setAddCart(addCart.filter((element) => element !== createdAt));
   };
   const goCart = (): void => {
-    const idTimer = uuidv4();
+    const idCart = uuidv4();
     setAddCart(() => {
-      return [...addCart, idTimer];
+      return [...addCart, idCart];
     });
   };
+  const { user, error, isLoading } = useUser();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
   return (
     <div className={styles.container}>
       <Layout>
@@ -38,13 +43,25 @@ const CartList: React.FC = () => {
                 <th>PRIX TOTAL</th>
               </tr>
             </thead>
-            <tbody>
-              {addCart.map((cartList) => {
-                return (
-                  <Cart key={cartList} cartId={cartList} removeCart={reset} />
-                );
-              })}
-            </tbody>
+            {!isLoading &&
+              (user ? (
+                <tbody>
+                  {addCart.map((cartList) => {
+                    return (
+                      <>
+                        <Cart
+                          key={cartList}
+                          cartId={cartList}
+                          removeCart={reset}
+                        />
+                        <h2 className={styles.grid}>{user.name}</h2>
+                      </>
+                    );
+                  })}
+                </tbody>
+              ) : (
+                <p>hello</p>
+              ))}
           </Table>
         </main>
       </Layout>
@@ -53,3 +70,4 @@ const CartList: React.FC = () => {
 };
 
 export default CartList;
+export const getServerSideProps = withPageAuthRequired();
