@@ -8,7 +8,7 @@ type CartProps = {
   removeCart: (createdAt: string) => void;
 };
 
-const Cart: React.FC<CartProps> = ({ cartId, removeCart }) => {
+const Panier: React.FC<CartProps> = ({ cartId, removeCart }) => {
   //usestate quantity
   const prix = 10;
   const [quantity, setQuantity] = React.useState(0);
@@ -60,4 +60,4 @@ const Cart: React.FC<CartProps> = ({ cartId, removeCart }) => {
     </>
   );
 };
-export default Cart;
+export default Panier;
