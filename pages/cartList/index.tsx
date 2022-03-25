@@ -1,7 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import Layout from "../../components/Layout";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import Panier from "../../components/Cart";
+import Panier from "../../components/Panier";
 import { Table } from "react-bootstrap";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
