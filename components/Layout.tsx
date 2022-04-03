@@ -77,7 +77,7 @@ const Layout: React.FC = ({ children }) => {
                       </Nav.Link>
                     </>
                   ))}
-                <Nav.Link href="/cartList">
+                <Nav.Link href="/cart">
                   <div>
                     <BsCart2 className={styles.icone} />{" "}
                     {/* <div className={styles.numberCart}>1</div> */}

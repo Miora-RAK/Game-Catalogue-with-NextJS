@@ -4,6 +4,8 @@ import { getDatabase } from "../../../src/utils/database";
 import Layout from "../../../components/Layout";
 import { Card, Button, Offcanvas } from "react-bootstrap";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../redux/cart.slice";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const data = await getDatabase();
@@ -40,6 +42,8 @@ const GameDetails: React.FC<GameDetailsProps> = ({
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.container}>
       <Layout>
@@ -64,7 +68,8 @@ const GameDetails: React.FC<GameDetailsProps> = ({
                 <>
                   <Button
                     variant="secondary"
-                    onClick={handleShow}
+                    // onClick={handleShow}
+                    onClick={() => dispatch(addToCart(gameDetails))}
                     className="me-2"
                   >
                     Add to cart
